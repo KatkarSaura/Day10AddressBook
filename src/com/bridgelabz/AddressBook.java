@@ -66,6 +66,89 @@ import java.util.Scanner;
        list.add(person);
 
    }
+   public void edit() {
+       System.out.println("Enter your First name:");
+       String fname = s.next();
+
+       Iterator<Person> iterator = list.listIterator();
+
+       while (iterator.hasNext()) {
+           Person person = iterator.next();
+
+           if (fname.equals(person.getFname())) {
+               Address address = person.getAddress();
+               System.out.println("Choose field you want to add:");
+               System.out.println("1.Last Name\t2.Phone Number\t3.Mail\t4.City\t5.Zip\t6. State");
+               switch (s.nextInt()) {
+                   case 1:
+                       System.out.println("Re-Correct your lastname");
+                       person.setLname(s.next());
+                       break;
+                   case 2:
+                       System.out.println("Re-Correct your Phone Number");
+                       person.setPhonenumber(s.nextLong());
+                       break;
+                   case 3:
+                       System.out.println("Re-Correct your mail");
+                       person.setMail(s.next());
+                       break;
+                   case 4:
+                       System.out.println("Re-Correct your City");
+                       address.setCity(s.next());
+                       break;
+                   case 5:
+                       System.out.println("Re-Correct your Zip");
+                       address.setZip(s.nextLong());
+                       break;
+                   case 6:
+                       System.out.println("Re-Correct your State");
+                       address.setState(s.next());
+                       break;
+               }
+
+           }
+       }
+
+   }
+
+   public void delete() {
+       System.out.println("Enter your First name:");
+       String fname = s.next();
+
+       Iterator<Person> iterator = list.listIterator();
+       while (iterator.hasNext()) {
+           Person person = iterator.next();
+
+           if (fname.equals(person.getFname())) {
+               list.remove(person);
+           }
+       }
+   }
+
+   public void sortByLastname() {
+       Collections.sort(list, Sort.compareLastName);
+   }
+
+   public ArrayList<Person> list() {
+       return list;
+   }
+
+   public void print() {
+       Iterator<Person> it = list.iterator();
+       while (it.hasNext()) {
+           System.out.println(it.next());
+       }
+   }
+
+
+   public static class Sort {
+       static Comparator<Person> compareLastName = new Comparator<Person>() {
+           public int compare(Person one, Person two) {
+               return one.getLname().compareTo(two.getLname());
+           }
+       };
+
+   }
 
 	    
 	    	    
